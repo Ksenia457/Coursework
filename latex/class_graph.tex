@@ -1,0 +1,154 @@
+\doxysection{Graph Class Reference}
+\hypertarget{class_graph}{}\label{class_graph}\index{Graph@{Graph}}
+
+
+Represents an undirected weighted graph and provides Prim\textquotesingle{}s algorithm implementation.  
+
+
+
+
+{\ttfamily \#include $<$prim.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph_a7377fb78cab55e7d3bb72d151ccaecba}{Graph}} (int vertices)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_graph}{Graph}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_ae0fb47d4e55ad88c5f254849e6410688}{add\+Edge}} (int u, int v, int weight)
+\begin{DoxyCompactList}\small\item\em Adds an edge to the graph. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_graph_a115f041456adfe9168c826980f7d7122}{get\+Num\+Vertices}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of vertices in the graph. \end{DoxyCompactList}\item 
+const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \& \mbox{\hyperlink{class_graph_a623f92a0f2480b7b972edc37c901fb35}{get\+Edges}} (int vertex) const
+\begin{DoxyCompactList}\small\item\em Gets edges connected to a given vertex. \end{DoxyCompactList}\item 
+std\+::pair$<$ std\+::vector$<$ \mbox{\hyperlink{struct_edge}{Edge}} $>$, int $>$ \mbox{\hyperlink{class_graph_a0238cc8eb98313b2cdce697f7d430f3f}{prim\+MST}} () const
+\begin{DoxyCompactList}\small\item\em Runs Prim\textquotesingle{}s algorithm to find the Minimum Spanning Tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_a7f3443a1a16d43c69ba86f6f13891d92}{save\+MSTTo\+Graphviz}} (const std\+::vector$<$ \mbox{\hyperlink{struct_edge}{Edge}} $>$ \&mst, const std\+::string \&filename) const
+\begin{DoxyCompactList}\small\item\em Saves the Minimum Spanning Tree to a Graphviz file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an undirected weighted graph and provides Prim\textquotesingle{}s algorithm implementation. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_graph_a7377fb78cab55e7d3bb72d151ccaecba}\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Graph()}{Graph()}}
+{\footnotesize\ttfamily \label{class_graph_a7377fb78cab55e7d3bb72d151ccaecba} 
+Graph\+::\+Graph (\begin{DoxyParamCaption}\item[{int}]{vertices}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor for \doxylink{class_graph}{Graph}. 
+
+\doxylink{class_graph}{Graph} constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & Number of vertices in the graph. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_graph_ae0fb47d4e55ad88c5f254849e6410688}\index{Graph@{Graph}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily \label{class_graph_ae0fb47d4e55ad88c5f254849e6410688} 
+void Graph\+::add\+Edge (\begin{DoxyParamCaption}\item[{int}]{u}{, }\item[{int}]{v}{, }\item[{int}]{weight}{}\end{DoxyParamCaption})}
+
+
+
+Adds an edge to the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em u} & Source vertex. \\
+\hline
+{\em v} & Destination vertex. \\
+\hline
+{\em weight} & Weight of the edge.\\
+\hline
+{\em u} & Source vertex number. \\
+\hline
+{\em v} & Destination vertex number. \\
+\hline
+{\em weight} & Weight of the edge. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_graph_a623f92a0f2480b7b972edc37c901fb35}\index{Graph@{Graph}!getEdges@{getEdges}}
+\index{getEdges@{getEdges}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getEdges()}{getEdges()}}
+{\footnotesize\ttfamily \label{class_graph_a623f92a0f2480b7b972edc37c901fb35} 
+const std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \& Graph\+::get\+Edges (\begin{DoxyParamCaption}\item[{int}]{vertex}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets edges connected to a given vertex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertex} & The vertex for which edges are retrieved. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of edges connected to the vertex. 
+\end{DoxyReturn}
+\Hypertarget{class_graph_a115f041456adfe9168c826980f7d7122}\index{Graph@{Graph}!getNumVertices@{getNumVertices}}
+\index{getNumVertices@{getNumVertices}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getNumVertices()}{getNumVertices()}}
+{\footnotesize\ttfamily \label{class_graph_a115f041456adfe9168c826980f7d7122} 
+int Graph\+::get\+Num\+Vertices (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the number of vertices in the graph. 
+
+\begin{DoxyReturn}{Returns}
+The number of vertices. 
+\end{DoxyReturn}
+\Hypertarget{class_graph_a0238cc8eb98313b2cdce697f7d430f3f}\index{Graph@{Graph}!primMST@{primMST}}
+\index{primMST@{primMST}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{primMST()}{primMST()}}
+{\footnotesize\ttfamily \label{class_graph_a0238cc8eb98313b2cdce697f7d430f3f} 
+std\+::pair$<$ std\+::vector$<$ \mbox{\hyperlink{struct_edge}{Edge}} $>$, int $>$ Graph\+::prim\+MST (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Runs Prim\textquotesingle{}s algorithm to find the Minimum Spanning Tree. 
+
+Executes Prim\textquotesingle{}s algorithm to find the minimum spanning tree.
+
+\begin{DoxyReturn}{Returns}
+A pair containing the vector of edges in the MST and its total weight.
+
+Pair containing the vector of edges comprising the MST and the total weight of the MST. 
+\end{DoxyReturn}
+\Hypertarget{class_graph_a7f3443a1a16d43c69ba86f6f13891d92}\index{Graph@{Graph}!saveMSTToGraphviz@{saveMSTToGraphviz}}
+\index{saveMSTToGraphviz@{saveMSTToGraphviz}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{saveMSTToGraphviz()}{saveMSTToGraphviz()}}
+{\footnotesize\ttfamily \label{class_graph_a7f3443a1a16d43c69ba86f6f13891d92} 
+void Graph\+::save\+MSTTo\+Graphviz (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{struct_edge}{Edge}} $>$ \&}]{mst}{, }\item[{const std\+::string \&}]{filename}{}\end{DoxyParamCaption}) const}
+
+
+
+Saves the Minimum Spanning Tree to a Graphviz file. 
+
+Saves the minimum spanning tree in Graphviz format.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mst} & Vector of edges in the MST. \\
+\hline
+{\em filename} & Name of the file to save.\\
+\hline
+{\em mst} & Vector of edges of the minimum spanning tree. \\
+\hline
+{\em filename} & Name of the file to save. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{prim_8h}{prim.\+h}}\item 
+prim.\+cpp\end{DoxyCompactItemize}

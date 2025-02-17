@@ -1,0 +1,62 @@
+\doxysection{main.\+cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{main.cpp@{main.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include "{}prim.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{main_8cpp_a39be18b4243db0d3fb8d890cbe1248ca}{is\+Connected}} (const \mbox{\hyperlink{class_graph}{Graph}} \&graph)
+\begin{DoxyCompactList}\small\item\em Checks if the graph is connected using BFS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{main_8cpp_a8a6f1b90e50b8821dde0aa6061207cf4}{load\+Graph\+From\+Console}} ()
+\begin{DoxyCompactList}\small\item\em Loads a graph from console input with connectivity check. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Entry point of the program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a39be18b4243db0d3fb8d890cbe1248ca}\index{main.cpp@{main.cpp}!isConnected@{isConnected}}
+\index{isConnected@{isConnected}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{isConnected()}{isConnected()}}
+{\footnotesize\ttfamily \label{main_8cpp_a39be18b4243db0d3fb8d890cbe1248ca} 
+bool is\+Connected (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_graph}{Graph}} \&}]{graph}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the graph is connected using BFS. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & The adjacency list representation of the graph. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the graph is connected, otherwise false. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a8a6f1b90e50b8821dde0aa6061207cf4}\index{main.cpp@{main.cpp}!loadGraphFromConsole@{loadGraphFromConsole}}
+\index{loadGraphFromConsole@{loadGraphFromConsole}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{loadGraphFromConsole()}{loadGraphFromConsole()}}
+{\footnotesize\ttfamily \label{main_8cpp_a8a6f1b90e50b8821dde0aa6061207cf4} 
+\mbox{\hyperlink{class_graph}{Graph}} load\+Graph\+From\+Console (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Loads a graph from console input with connectivity check. 
+
+\begin{DoxyReturn}{Returns}
+A valid \doxylink{class_graph}{Graph} object. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Entry point of the program. 
+
+\begin{DoxyReturn}{Returns}
+Program exit code. 
+\end{DoxyReturn}

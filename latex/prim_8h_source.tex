@@ -1,0 +1,34 @@
+\doxysection{prim.\+h}
+\hypertarget{prim_8h_source}{}\label{prim_8h_source}\mbox{\hyperlink{prim_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_edge}{Edge}}\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{int}\ src,\ dest,\ weight;}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_graph}{Graph}}\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ numVertices;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ std::vector<std::vector<std::pair<int,\ int>>>\ adjList;\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_graph_a7377fb78cab55e7d3bb72d151ccaecba}{Graph}}(\textcolor{keywordtype}{int}\ vertices);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_graph_ae0fb47d4e55ad88c5f254849e6410688}{addEdge}}(\textcolor{keywordtype}{int}\ u,\ \textcolor{keywordtype}{int}\ v,\ \textcolor{keywordtype}{int}\ weight);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_graph_a115f041456adfe9168c826980f7d7122}{getNumVertices}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::pair<int,\ int>>\&\ \mbox{\hyperlink{class_graph_a623f92a0f2480b7b972edc37c901fb35}{getEdges}}(\textcolor{keywordtype}{int}\ vertex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \ \ std::pair<std::vector<Edge>,\ \textcolor{keywordtype}{int}>\ \mbox{\hyperlink{class_graph_a0238cc8eb98313b2cdce697f7d430f3f}{primMST}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_graph_a7f3443a1a16d43c69ba86f6f13891d92}{saveMSTToGraphviz}}(\textcolor{keyword}{const}\ std::vector<Edge>\&\ mst,\ \textcolor{keyword}{const}\ std::string\&\ filename)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ \};}
+
+\end{DoxyCode}

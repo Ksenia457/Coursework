@@ -18,8 +18,26 @@ Graph::Graph(int vertices) : numVertices(vertices), adjList(vertices) {}
  */
 void Graph::addEdge(int u, int v, int weight) {
 
-    adjList[u].push_back(std::make_pair(v, weight));
-    adjList[v].push_back(std::make_pair(u, weight));
+	adjList[u].push_back(std::make_pair(v, weight));
+	adjList[v].push_back(std::make_pair(u, weight));
+
+}
+
+/**
+ * @brief Gets the number of vertices in the graph.
+ * @return The number of vertices.
+ */
+int Graph::getNumVertices() const {
+	return numVertices;
+}
+
+/**
+ * @brief Gets edges connected to a given vertex.
+ * @param vertex The vertex for which edges are retrieved.
+ * @return Vector of edges connected to the vertex.
+ */
+const std::vector<std::pair<int, int>>& Graph::getEdges(int vertex) const {
+	return adjList[vertex];
 }
 
 /**
@@ -28,62 +46,60 @@ void Graph::addEdge(int u, int v, int weight) {
  */
 std::pair<std::vector<Edge>, int> Graph::primMST() const {
 
-    std::vector<Edge> mst;
+	std::vector<Edge> mst;
+	std::vector<bool> inMST(numVertices, false);
+	std::vector<int> key(numVertices, std::numeric_limits<int>::max());
+	std::vector<int> parent(numVertices, -1);
+	std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> pq;
 
-    std::vector<bool> inMST(numVertices, false);
+	int startVertex = 0;
 
-    std::vector<int> key(numVertices, std::numeric_limits<int>::max());
+	key[startVertex] = 0;
 
-    std::vector<int> parent(numVertices, -1);
+	pq.push(std::make_pair(0, startVertex));
 
-    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> pq;
+	int totalWeight = 0;
 
-    int startVertex = 0;
-    key[startVertex] = 0;
+	while (!pq.empty()) {
 
-    pq.push(std::make_pair(0, startVertex));
+		int u = pq.top().second;
 
-    int totalWeight = 0;
+		pq.pop();
 
-    while (!pq.empty()) {
+		if (inMST[u])
 
-        int u = pq.top().second;
+			continue;
 
-        pq.pop();
+		inMST[u] = true;
 
-        if (inMST[u])
+		if (parent[u] != -1) {
 
-            continue;
+			mst.push_back(Edge{ parent[u], u, key[u] });
 
-        inMST[u] = true;
+			totalWeight += key[u];
+		}
 
-        if (parent[u] != -1) {
+		for (const auto& neighbor : adjList[u]) {
 
-            mst.push_back(Edge{ parent[u], u, key[u] });
+			int v = neighbor.first;
 
-            totalWeight += key[u];
-        }
+			int weight = neighbor.second;
 
-        for (size_t i = 0; i < adjList[u].size(); ++i) {
+			if (!inMST[v] && weight < key[v]) {
 
-            int v = adjList[u][i].first;
+				key[v] = weight;
 
-            int weight = adjList[u][i].second;
+				pq.push(std::make_pair(key[v], v));
 
-            if (!inMST[v] && weight < key[v]) {
+				parent[v] = u;
 
-                key[v] = weight;
+			}
 
-                pq.push(std::make_pair(key[v], v));
+		}
 
-                parent[v] = u;
-            }
+	}
 
-        }
-
-    }
-
-    return std::make_pair(mst, totalWeight);
+	return std::make_pair(mst, totalWeight);
 }
 
 /**
@@ -93,22 +109,22 @@ std::pair<std::vector<Edge>, int> Graph::primMST() const {
  */
 void Graph::saveMSTToGraphviz(const std::vector<Edge>& mst, const std::string& filename) const {
 
-    std::ofstream file(filename);
+	std::ofstream file(filename);
 
-    if (!file.is_open()) {
+	if (!file.is_open()) {
 
-        std::cerr << "Failed to open file for writing: " << filename << std::endl;
-        return;
-    }
+		std::cerr << "Failed to open file for writing: " << filename << std::endl;
+		return;
+	}
 
-    file << "graph MST {\n";
+	file << "graph MST {\n";
 
-    for (size_t i = 0; i < mst.size(); ++i) {
-        file << "    " << mst[i].src << " -- " << mst[i].dest
-            << " [label=\"" << mst[i].weight << "\"];\n";
-    }
+	for (const auto& edge : mst) {
+		file << "    " << edge.src << " -- " << edge.dest
+			<< " [label=\"" << edge.weight << "\"];\n";
+	}
 
-    file << "}\n";
+	file << "}\n";
 
-    file.close();
+	file.close();
 }

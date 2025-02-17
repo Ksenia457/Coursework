@@ -1,5 +1,6 @@
-﻿#include <iostream>
-#include <fstream>
+#include <iostream>
+#include <vector>
+#include <queue>
 #include "prim.h"
 
 /**
@@ -7,54 +8,86 @@
 */
 
 /**
- * @brief Loads a graph from a file.
- * @param filename Name of the file containing the graph description.
- * @return Graph object created based on the file data.
+ * @brief Checks if the graph is connected using BFS.
+ * @param graph The adjacency list representation of the graph.
+ * @return True if the graph is connected, otherwise false.
  */
-Graph loadGraphFromFile(const std::string& filename) {
+bool isConnected(const Graph& graph) {
 
-	std::ifstream inFile(filename);
+	int V = graph.getNumVertices();
 
-	if (!inFile.is_open()) {
+	std::vector<bool> visited(V, false);
+	std::queue<int> q;
 
-		throw std::runtime_error("Failed to open file: " + filename);
+	q.push(0);
+
+	visited[0] = true;
+
+	int visitedCount = 1;
+
+	while (!q.empty()) {
+
+		int node = q.front();
+
+		q.pop();
+
+		for (const auto& edge : graph.getEdges(node)) {
+
+			int neighbor = edge.first;
+
+			if (!visited[neighbor]) {
+
+				visited[neighbor] = true;
+
+				q.push(neighbor);
+
+				visitedCount++;
+			}
+
+		}
+
 	}
 
-	int V, E;
+	return visitedCount == V;
+}
 
-	if (!(inFile >> V >> E)) {
+/**
+ * @brief Loads a graph from console input with connectivity check.
+ * @return A valid Graph object.
+ */
+Graph loadGraphFromConsole() {
 
-		throw std::runtime_error("Invalid file format: cannot read number of vertices and edges.");
+	while (true) {
+
+		int V, E;
+
+		std::cout << "Enter the number of vertices and edges: ";
+		std::cin >> V >> E;
+
+		Graph graph(V);
+
+		std::cout << "Enter " << E << " edges (u v weight):\n";
+
+		for (int i = 0; i < E; ++i) {
+
+			int u, v, weight;
+
+			std::cin >> u >> v >> weight;
+
+			graph.addEdge(u, v, weight);
+		}
+
+		if (isConnected(graph)) {
+
+			return graph;
+		}
+
+		else {
+			std::cout << "Graph is not connected. Please re-enter a connected graph.\n";
+		}
+
 	}
 
-	int maxVertex = 0;
-
-	std::vector<std::tuple<int, int, int>> edges;
-
-	int u, v, weight;
-
-	while (inFile >> u >> v >> weight) {
-
-		maxVertex = std::max({ maxVertex, u, v });
-
-		edges.emplace_back(u, v, weight);
-	}
-
-	if (maxVertex >= V) {
-
-		V = maxVertex + 1;
-	}
-
-	Graph graph(V);
-
-	for (const auto& [u, v, weight] : edges) {
-
-		graph.addEdge(u, v, weight);
-	}
-
-	inFile.close();
-
-	return graph;
 }
 
 /**
@@ -65,20 +98,16 @@ int main() {
 
 	try {
 
-		std::string inputFile = "input.txt";
-		std::string outputFile = "mst.dot";
-
-		Graph graph = loadGraphFromFile(inputFile);
+		Graph graph = loadGraphFromConsole();
 
 		std::pair<std::vector<Edge>, int> result = graph.primMST();
-
 		std::vector<Edge> mst = result.first;
 
 		int totalWeight = result.second;
 
-		graph.saveMSTToGraphviz(mst, outputFile);
+		graph.saveMSTToGraphviz(mst, "mst.dot");
 
-		std::cout << "Minimum spanning tree saved to file: " << outputFile << std::endl;
+		std::cout << "Minimum spanning tree saved to file: mst.dot" << std::endl;
 		std::cout << "Total weight of the minimum spanning tree: " << totalWeight << std::endl;
 	}
 	catch (const std::exception& ex) {
